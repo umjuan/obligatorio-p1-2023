@@ -1,4 +1,4 @@
-from entities.racing_team import Racing_Team
+from entities.team import Team
 
 class Race(object):
 
@@ -54,6 +54,8 @@ class Race(object):
 #       score_final = suma_score_mecanicos + score_auto + score_piloto –
 #                        5*cantidad_errores_en_pits - 8*cantidad_penalidad_infringir_norma 
                 pass
+            else:
+                self._results.append(0)
 
     def query_top10_chmp(self):
         #Perform query

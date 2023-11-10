@@ -5,9 +5,9 @@ class Racing_Team(Race):
         self._team_name= ""
         self._nationality = ""
         self.team_fundation_date = datetime.datetime.now()
-        self.team_car_model = ""
-        self.team_score = ""
-        self.members = int
+        self.team_car_model = []
+        self.team_score = float
+        self.members = []
         self._racers = []
         self._mechanics = []
         self._directors = []
@@ -32,3 +32,7 @@ class Racing_Team(Race):
     @property
     def get_official_racers(self):
         return self._official_racers
+    
+    @property
+    def get_directors(self):
+        return self._directors
