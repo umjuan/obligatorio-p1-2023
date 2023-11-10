@@ -14,7 +14,7 @@ class Team:
         self.__mechanic_6=mechanic_6
         self.__mechanic_7=mechanic_7
         self.__mechanic_8=mechanic_8
-    
+    team_list=[]
     @property
     def team_name(self):
         return self.__team_name
@@ -36,3 +36,6 @@ class Team:
     @property
     def team_leader(self):
         return self.__team_leader
+    @classmethod
+    def add_team(cls,other):
+        Team.team_list.append(other.team_name)

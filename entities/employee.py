@@ -8,7 +8,7 @@ class Employee(ABC):
         self.__nationality=nationality
         self.__born=born
         self.__salary=salary
-
+    employee_list=[]
     @property
     def id(self):
         return self.__id
@@ -27,6 +27,8 @@ class Employee(ABC):
     @property
     def salary(self):
         return self.__salary
-   
+    @classmethod
+    def id_list(other):
+        Employee.append(other.id)
 
     
