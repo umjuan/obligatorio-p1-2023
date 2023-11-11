@@ -1,18 +1,35 @@
 import datetime
 import Race
+from entities.car import Car
+from entities.employee import Employee
+
 class Racing_Team(Race):
     def __init__(self):
-        self._team_name= ""
+        self._teams = []
         self._nationality = ""
         self.team_fundation_date = datetime.datetime.now()
-        self.team_car_model = []
-        self.team_score = float
-        self.members = []
-        self._racers = []
-        self._mechanics = []
+        self.team_car_models = []
         self._directors = []
-        self._official_racers = []
 
+    def create_team(self,team_name,nationality,car_model,driver_1,driver_2,driver_reserve,team_leader,mechanic_1,mechanic_2,mechanic_3,mechanic_4,mechanic_5,mechanic_6,mechanic_7,mechanic_8):
+        if team_name not in self._teams and team_name != None:
+            self._team_name= team_name
+        else:
+            raise()
+        self._nationality = nationality
+        self.team_fundation_date = datetime.datetime.now()
+        self.team_car_model = [car_model]
+        self.team_score = float
+        self.members = [driver_1,driver_2,driver_reserve,team_leader,mechanic_1, mechanic_2, mechanic_3,mechanic_4,mechanic_5,mechanic_6,mechanic_7,mechanic_8]
+        self._racers = [driver_1,driver_2,driver_reserve]
+        self._mechanics = [mechanic_1, mechanic_2, mechanic_3,mechanic_4,mechanic_5,mechanic_6,mechanic_7,mechanic_8]
+        self._directors = [team_leader]
+        self._official_racers = [driver_1,driver_2]
+
+    @property
+    def get_teams(self):
+        return self._teams
+    
     @property
     def get_team_name(self):
         return self._team_name
@@ -36,3 +53,12 @@ class Racing_Team(Race):
     @property
     def get_directors(self):
         return self._directors
+    
+    @property
+    def get_mechanics(self):
+        return self._mechanics
+    
+    @_official_racers.setter
+    def _official_racers(self,other):
+        self._official_racers = self._official_racers.pop()
+        self._official_racers.append(other)
