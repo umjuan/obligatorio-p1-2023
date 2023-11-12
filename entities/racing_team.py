@@ -7,7 +7,6 @@ class Racing_Team(Race):
     def __init__(self):
         self._teams = []
         self._nationality = ""
-        self.team_fundation_date = datetime.datetime.now()
         self.team_car_models = []
         self._directors = []
 
