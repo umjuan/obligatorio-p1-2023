@@ -2,6 +2,7 @@ import datetime
 import Race
 from entities.car import Car
 from entities.employee import Employee
+from entities.exceptions import *
 
 class Racing_Team(Race):
     def __init__(self):
@@ -14,7 +15,8 @@ class Racing_Team(Race):
         if team_name not in self._teams and team_name != None:
             self._team_name= team_name
         else:
-            raise()
+            raise Team_Name_Already_in_Use
+        
         self._nationality = nationality
         self.team_fundation_date = datetime.datetime.now()
         self.team_car_model = [car_model]
