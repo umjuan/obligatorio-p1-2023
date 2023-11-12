@@ -5,7 +5,6 @@ from entities.car import Car
 class Race(object):
 
     def __init__(self):
-        teams = Racing_Team
         self._racers = []
         self._teams = []
         self._results = []
@@ -86,6 +85,3 @@ class Race(object):
 
 # print(z)
 # print(R.__init__)
-
-race = Race
-race.get_teams
