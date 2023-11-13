@@ -30,5 +30,3 @@ class Employee(ABC):
     @classmethod
     def employee_list(other):
         Employee.append(other)
-
-    
