@@ -1,7 +1,9 @@
 from abc import ABC
+from entities.exceptions import *
 
 class Employee(ABC):
-    def __init__(self,id,name,age,nationality,born,salary):
+    def __init__(self, id,name,age,nationality,born,salary):
+        self._employees = []
         self.__id=id
         self.__name=name
         self.__age=age
@@ -27,6 +29,3 @@ class Employee(ABC):
     @property
     def salary(self):
         return self.__salary
-   
-
-    

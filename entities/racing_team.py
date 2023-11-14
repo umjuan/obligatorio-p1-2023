@@ -59,7 +59,7 @@ class Racing_Team(Race):
     def get_mechanics(self):
         return self._mechanics
     
-    @_official_racers.setter
-    def _official_racers(self,other):
-        self._official_racers = self._official_racers.pop()
-        self._official_racers.append(other)
+    # @_official_racers.setter
+    # def _official_racers(self,other):
+    #     self._official_racers = self._official_racers.pop()
+    #     self._official_racers.append(other)
