@@ -10,19 +10,19 @@ class Driver(Employee):
 
     @property
     def score(self):
-        return  self.__score
+        return  self._score
     @property
     def car_number(self):
-        return  self.__car_number
+        return  self._car_number
     @property
     def total_score(self):
-        return self.__total_score
+        return self._total_score
     @total_score.setter
     def total_score(self,other):
-        self.__total_score=other
+        self._total_score=other
     @property
     def injury(self):
-        return self.__injury
+        return self._injury
     @injury.setter
     def injury(self,other):
-        self.__injury=other
+        self._injury=other

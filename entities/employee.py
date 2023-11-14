@@ -1,31 +1,32 @@
 from abc import ABC
-from entities.exceptions import *
 
 class Employee(ABC):
-    def __init__(self, id,name,age,nationality,born,salary):
-        self._employees = []
-        self.__id=id
-        self.__name=name
-        self.__age=age
-        self.__nationality=nationality
-        self.__born=born
-        self.__salary=salary
-
+    def __init__(self,id,name,age,nationality,born,salary):
+        self._id=id
+        self._name=name
+        self._age=age
+        self._nationality=nationality
+        self._born=born
+        self._salary=salary
+    employee_list=[]
     @property
     def id(self):
-        return self.__id
+        return self._id
     @property
     def name(self):
-        return self.__name
+        return self._name
     @property
     def age(self):
-        return self.__age
+        return self._age
     @property
     def nationality(self):
-        return self.__nationality
+        return self._nationality
     @property
     def born(self):
-        return self.__born
+        return self._born
     @property
     def salary(self):
-        return self.__salary
+        return self._salary
+    @classmethod
+    def employee_list(other):
+        Employee.append(other)

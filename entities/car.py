@@ -1,15 +1,17 @@
 class Car:
     def __init__(self,model,score,colour):
-        self.__model=model
-        self.__score=score
-        self.__colour=colour
+        self._model=model
+        self._score=score
+        self._colour=colour
     
     @property
     def model(self):
-        return  self.__model
+        return  self._model
     @property
     def score(self):
-        return  self.__score
+        return  self._score
     @property
     def colour(self):
-        return  self.__colour
+        return  self._colour
+
+

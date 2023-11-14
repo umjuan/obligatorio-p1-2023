@@ -29,7 +29,7 @@ class Car_Nmbr_Already_in_Use(Exception):
         self.message=message
         super().__init__(self.message)
 
-class Non_Existent_Car_Nmbr(Exception):
+class Non_Competing_Or_Existing_Car_Nmbr(Exception):
 
     def __init__(self, message='self descriptive'):
         self.message=message
