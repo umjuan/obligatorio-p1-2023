@@ -29,5 +29,13 @@ class Employee(ABC):
     def salary(self):
         return self._salary
     @classmethod
-    def employee_list(other):
-        Employee.append(other)
+    def employee_add(cls, other):
+        Employee.employee_list.append(other)
+    
+    def employee_lista(cls):
+        ids = []
+        for id in Employee.employee_list:
+            x = id
+            ids.append(x)
+        for instance in ids:
+            print(isinstance(instance))
