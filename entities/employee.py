@@ -9,6 +9,7 @@ class Employee(ABC):
         self._born=born
         self._salary=salary
     employee_list=[]
+    
     @property
     def id(self):
         return self._id

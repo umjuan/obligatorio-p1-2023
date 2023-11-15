@@ -11,7 +11,7 @@ class Racing_Team(Race):
         self.team_car_models = []
         self._directors = []
 
-    def create_team(self,team_name,nationality,car_model,driver_1,driver_2,driver_reserve,team_leader,mechanic_1,mechanic_2,mechanic_3,mechanic_4,mechanic_5,mechanic_6,mechanic_7,mechanic_8):
+    def create_team(self,team_name,nationality,car_model,driver_1,driver_2,driver_reserve,team_leader,mechanics):
         if team_name not in self._teams and team_name != None:
             self._team_name= team_name
         else:
@@ -21,9 +21,9 @@ class Racing_Team(Race):
         self.team_fundation_date = datetime.datetime.now()
         self.team_car_model = [car_model]
         self.team_score = float
-        self.members = [driver_1,driver_2,driver_reserve,team_leader,mechanic_1, mechanic_2, mechanic_3,mechanic_4,mechanic_5,mechanic_6,mechanic_7,mechanic_8]
+        self.members = [driver_1,driver_2,driver_reserve,team_leader,mechanics]
         self._racers = [driver_1,driver_2,driver_reserve]
-        self._mechanics = [mechanic_1, mechanic_2, mechanic_3,mechanic_4,mechanic_5,mechanic_6,mechanic_7,mechanic_8]
+        self._mechanics = [mechanics]
         self._directors = [team_leader]
         self._official_racers = [driver_1,driver_2]
 
