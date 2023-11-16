@@ -2,12 +2,12 @@ from entities.employee import Employee
 
 class Driver(Employee):
     def __init__(self,id,name,age,nationality,born,salary,score,total_score,car_number,injury=False):
-        super().__init__(self,id,name,age,nationality,born,salary)
-        self.__score=score
-        self.__total_score=total_score
-        self.__car_number=car_number
-        self.__injury=injury
-
+        Employee.__init__(self,id,name,age,nationality,born,salary)
+        self._score=score
+        self._total_score=total_score
+        self._car_number=car_number
+        self._injury=injury
+        self.type='driver'
     @property
     def score(self):
         return  self._score
