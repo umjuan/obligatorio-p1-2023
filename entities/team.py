@@ -1,6 +1,8 @@
 class Team:
-    def __init__(self,team_name,car_model,drivers,team_leader,mechanics):
+    def __init__(self,team_name,nationality,foundation_date,car_model,drivers,team_leader,mechanics):
         self._team_name=team_name
+        self._nationality= nationality
+        self._foudation=foundation_date
         self._car_model=car_model
         self._drivers=drivers
         self._team_leader=team_leader

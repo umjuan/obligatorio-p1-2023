@@ -27,7 +27,7 @@ class Invalid_score(Exception):
 
 class Employee_Has_A_Team(Exception):
 
-    def __init__(self, message='self descriptive'):
+    def __init__(self, message='Employee already has a team'):
         self.message=message
         super().__init__(self.message)
 
@@ -85,7 +85,12 @@ class Nacionality(Exception):
         super().__init__(self.message)
 
 class Dates(Exception):
-    def __init__(self, message='Check nationality sintax, remember must use alphabet characters'):
+    def __init__(self, message='Check  sintax, remember dates between [1888/01/01 - 2008/01/01/]'):
+        self.message=message
+        super().__init__(self.message)
+
+class Dates_Team(Exception):
+    def __init__(self, message='Check  sintax, remember dates between [1888/01/01 - 2026/01/01/]'):
         self.message=message
         super().__init__(self.message)
 
@@ -109,11 +114,20 @@ class Nationality(Exception):
         self.message=message
         super().__init__(self.message)
 
+class Year(Exception):
+    def __init__(self, message='Year not founded or not int, year must be between [1888-2027]'):
+        self.message=message
+        super().__init__(self.message)
 
+class Car_No_Exist(Exception):
+    def __init__(self, message='Car not founded in our list, car must be created before beeing asigned'):
+        self.message=message
+        super().__init__(self.message)
 
-def NE_ID (ide):                                       #Chequea si la id de un empleado existe, devuelve eror                                                      
+def NE_ID(ide):                                       #Chequea si la id de un empleado existe, devuelve eror                                                      
     lista=[i.id for i in Employee.employee_list]       #si negativo, usado cuando se añade un empl. a un equipo
     if ide not in lista: raise Non_Existent_Id()
+    else: pass
 
 def INV_EM_ID(ide):                                #chequea si la id dada es valida en cuanto a su sintaxis
     if len(ide)!=8: raise Invalid_Employee_id()
@@ -128,18 +142,21 @@ def INV_SC(sco):                                #chequea si un score dado es cor
                 raise Score()
         pass
 
-def EM_HAS_TEAM (ide):          #chequea si un empleado ya tiene un equipo antes de añadirlo a uno 
+def EM_HAS_TEAM(ide):          #chequea si un empleado ya tiene un equipo antes de añadirlo a uno 
     lista=[]
     for i in Team.team_list:
         lista.extend(i.drivers)
         lista.extend(i.mechanics)
         lista.extend(i.team_leader)
         if ide in lista: raise Employee_Has_A_Team()
+        else: pass
 
 def TEAM_NAME_AIU(name):                  #chequea que no se este usando el mismo nombre para dos equipos
     lista= [i.team_name for i in Team.team_list]
     if name in lista:
         raise Team_Name_Already_in_Use()
+    else:
+        pass
 
 def CAR_NMBR_AIU_(number):             #chequea que un piloto no repita su numero de auto
     for i in Employee.employee_list:     #usado cuando se crea un piloto
@@ -170,35 +187,36 @@ def DATE_VALIDATION (date):
     
 def CAR_MODEL_VALIDATION(model):
     if model == str:
-        pass
-    lista=[]                                  #usado durante la carrera
-    for car in Car.cars_list:
-        lista.append(car)
-    return lista
+        lista=[]                                  #usado durante la carrera
+        for car in Car.cars_list:
+            lista.append(car)
+        return lista
 
 def COLOR_LIST(colour):
     simplify = colour.lower()
-    colours =[i.lower() for i in ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Brown", "Gray",
-            "White",  "Black", "Turquoise", "Lavender", "Magenta", "Cyan", "Indigo", "Maroon",
-            "Gold", "Silver",  "Olive", "Teal", "Peach", "Coral", "Violet", "Charcoal", "Beige",
-            "Mint", "Ruby", "Slate",  "Salmon", "Aqua", "Tan", "Navy", "Khaki", "Crimson", "Lime",
-            "Rose", "Brick", "Amber",  "Mustard", "Periwinkle", "Sapphire", "Sienna", "Plum", "Aquamarine",
-            "Apricot", "Chartreuse",  "Cerulean", "Tangerine", "Rust", "Mulberry", "Ivory", "Emerald", "Steel", "Burgundy",
-            "Forest Green", "Cornflower Blue", "Sky Blue", "Melon", "Pumpkin", "Ochre", "Denim",  "Cobalt", "Mauve", "Moccasin",
-            "Papaya Whip", "Wheat", "Slate Gray", "Turmeric", "Honeydew",  "Orchid", "Electric Blue", "Fuchsia", "Lemon", "Misty Rose",
-            "Salmon Pink", "Thistle",  "Powder Blue", "Hot Pink", "Midnight Blue", "Chocolate", "Olive Drab", "Pine Green",  "Tomato", "Firebrick",
-            "Dodger Blue", "Linen", "Navajo White",  "Alice Blue", "Azure", "Bisque", "Blanched Almond", "Burlywood", "Cadet Blue", "Chocolate", 
-            "Cornsilk", "Dark Goldenrod", "Dark Khaki", "Dark Olive Green", "Dark Orange", "Dark Orchid",  "Dark Salmon", "Dark Sea Green", "Dark Slate Blue",
-            "Dark Slate Gray", "Dark Turquoise",  "Deep Pink", "Deep Sky Blue", "Dim Gray", "Dodger Blue", "Firebrick", "Floral White", "Forest Green",
-            "Gainsboro", "Ghost White", "Gold", "Goldenrod", "Green Yellow", "Honeydew", "Hot Pink", "Indian Red",  "Ivory", "Khaki", "Lavender Blush",
-            "Lemon Chiffon", "Light Blue", "Light Coral", "Light Cyan",  "Light Goldenrod", "Light Goldenrod Yellow", "Light Gray", "Light Green",
-            "Light Pink", "Light Salmon",  "Light Sea Green", "Light Sky Blue", "Light Slate Gray", "Light Steel Blue", "Light Yellow", "Linen",  "Magenta",
-            "Maroon", "Medium Aquamarine", "Medium Blue", "Medium Orchid", "Medium Purple", "Medium Sea Green",  "Medium Slate Blue", "Medium Spring Green", 
-            "Medium Turquoise", "Medium Violet Red", "Midnight Blue",  "Mint Cream", "Misty Rose", "Moccasin", "Navajo White", "Navy", "Old Lace", "Olive",
-            "Olive Drab",  "Orange", "Orange Red", "Orchid", "Pale Goldenrod", "Pale Green", "Pale Turquoise", "Pale Violet Red",  "Papaya Whip", "Peach Puff",
-            "Peru", "Pink", "Plum", "Powder Blue", "Purple", "Red", "Rosy Brown",  "Royal Blue", "Saddle Brown", "Salmon", "Sandy Brown", "Sea Green", "Seashell",
-            "Sienna", "Silver",  "Sky Blue", "Slate Blue", "Slate Gray", "Snow", "Spring Green", "Steel Blue", "Tan", "Teal", "Thistle",  "Tomato", "Turquoise", "Violet",
-            "Wheat", "White", "White Smoke", "Yellow", "Yellow Green"]]
+    colours =["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown",
+            "gray", "white", "black", "turquoise", "lavender", "magenta", "cyan", "indigo",
+            "maroon", "gold", "silver", "olive", "teal", "peach", "coral", "violet",
+            "charcoal", "beige", "mint", "ruby", "slate", "salmon", "aqua", "tan",
+            "navy", "khaki", "crimson", "lime", "rose", "brick", "amber", "mustard",
+            "periwinkle", "sapphire", "sienna", "plum", "aquamarine", "apricot", "chartreuse", "cerulean",
+            "tangerine", "rust", "mulberry", "ivory", "emerald", "steel", "burgundy", "forest green",
+            "cornflower blue", "sky blue", "melon", "pumpkin", "ochre", "denim", "cobalt", "mauve",
+            "moccasin", "papaya whip", "wheat", "slate gray", "turmeric", "honeydew", "orchid", "electric blue",
+            "fuchsia", "lemon", "misty rose", "salmon pink", "thistle", "powder blue", "hot pink", "midnight blue",
+            "chocolate", "olive drab", "pine green", "tomato", "firebrick", "dodger blue", "linen", "navajo white",
+            "alice blue", "azure", "bisque", "blanched almond", "burlywood", "cadet blue", "chocolate", "cornsilk",
+            "dark goldenrod", "dark khaki", "dark olive green", "dark orange", "dark orchid", "dark salmon", "dark sea green", "dark slate blue",
+            "dark slate gray", "dark turquoise", "deep pink", "deep sky blue", "dim gray", "dodger blue", "firebrick", "floral white", "forest green",
+            "gainsboro", "ghost white", "gold", "goldenrod", "green yellow", "honeydew", "hot pink", "indian red", "ivory", "khaki", "lavender blush",
+            "lemon chiffon", "light blue", "light coral", "light cyan", "light goldenrod", "light goldenrod yellow", "light gray", "light green",
+            "light pink", "light salmon", "light sea green", "light sky blue", "light slate gray", "light steel blue", "light yellow", "linen", "magenta",
+            "maroon", "medium aquamarine", "medium blue", "medium orchid", "medium purple", "medium sea green", "medium slate blue", "medium spring green",
+            "medium turquoise", "medium violet red", "midnight blue", "mint cream", "misty rose", "moccasin", "navajo white", "navy", "old lace", "olive",
+            "olive drab", "orange", "orange red", "orchid", "pale goldenrod", "pale green", "pale turquoise", "pale violet red", "papaya whip", "peach puff",
+            "peru", "pink", "plum", "powder blue", "purple", "red", "rosy brown", "royal blue", "saddle brown", "salmon", "sandy brown", "sea green", "seashell",
+            "sienna", "silver", "sky blue", "slate blue", "slate gray", "snow", "spring green", "steel blue", "tan", "teal", "thistle", "tomato", "turquoise", "violet",
+            "wheat", "white", "white smoke", "yellow", "yellow green"]
     if simplify in colours:
         pass
     
@@ -226,3 +244,30 @@ def NATIONALITY_LIST(nationality):
             "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"]]
     if simplify in nationalies:
         pass
+
+def YEAR(year):
+    simplify = int(year)
+    years =[1888, 1889, 1890, 1891, 1892, 1893, 1894, 1895, 1896, 1897,
+            1898, 1899, 1900, 1901, 1902, 1903, 1904, 1905, 1906, 1907,
+            1908, 1909, 1910, 1911, 1912, 1913, 1914, 1915, 1916, 1917,
+            1918, 1919, 1920, 1921, 1922, 1923, 1924, 1925, 1926, 1927,
+            1928, 1929, 1930, 1931, 1932, 1933, 1934, 1935, 1936, 1937,
+            1938, 1939, 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947,
+            1948, 1949, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 1957,
+            1958, 1959, 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967,
+            1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977,
+            1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987,
+            1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997,
+            1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,
+            2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
+            2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027]
+    if simplify in years:
+        pass
+
+def DATE_VALIDATION_TEAM(date):
+    date_obj  = datetime.strptime(date, '%Y-%m-%d').date()
+    startDate = datetime.datetime(1888, 1, 1, 00, 00, 00).date()
+    endDate   = datetime.strptime(2026, 1, 1, 00, 00, 00).date()
+    # check if dateObj is between startDate and endDate
+    if startDate <= date_obj <= endDate:
+        return True
