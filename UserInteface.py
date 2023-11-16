@@ -46,13 +46,13 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
     if INV_EM_ID(id) and NE_ID(id):
         pass
     else:
-        raise Invalid_Employee_id(), Non_Existent_Id    #,Invalid_Employee_Parameter
+        raise Invalid_Employee_id or Non_Existent_Id    #,Invalid_Employee_Parameter
 
     for employee in Employee.employee_lista():
         if employee !=name and name != None and name.isalpha():
             pass
         else: 
-            raise Alphabet, Team_Name_Already_in_Use
+            raise Alphabet or Team_Name_Already_in_Use
     if int(age) != None and 120>age>14 :
         pass
     else:
@@ -80,21 +80,24 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
     if car_number == int and NC_OE_CAR_NMBR(car_number):
         pass
     else:
-        raise 'Car number incorrect', Car_Nmbr_Already_in_Use 
+        raise Car_Nmbr_Already_in_Use 
     if type == 'Mechanic':
         INV_SC(score)
         M = Mechanic(id,name,age,nationality,born,salary,score)
+        M.isemployee()
         M.employee_add(M)
         print(f'Created {M._name}')
     if type == 'Driver':
         INV_SC(score)
         INV_SC(total_score)
         M = Driver(id,name,age,nationality,born,salary,score,total_score,car_number)
+        M.isemployee()
         M._score = score
         M.employee_add(M)
         print(f'Created driver {M._name, M._car_number, M._score, M._total_score}')
     if type == 'Director':
         M = Director(id, name, age, nationality, born, salary)
+        M.isemployee()
         M.employee_add(M)
         print(f'Created {M._name}')
 
@@ -118,12 +121,12 @@ def create_car(model,year,score,colour):
     car = Car(model,year,score,colour)
     car.add_car(car)
     print(f'{car._model} has been created successfully')
-    
+
 def create_team(team_name,nationality,foundation_date,car_model,drivers,team_leader,mechanics):
     if team_name == str and TEAM_NAME_AIU(team_name):
         pass
     else:
-        raise Alphabet, Team_Name_Already_in_Use
+        raise Alphabet or Team_Name_Already_in_Use
     if nationality != None and nationality.isalpha() and NATIONALITY_LIST(nationality):
             pass
     else:
@@ -140,16 +143,16 @@ def create_team(team_name,nationality,foundation_date,car_model,drivers,team_lea
         if driver == int and NE_ID(driver) and EM_HAS_TEAM(driver):
             pass
         else:
-            raise Non_Existent_Id, Employee_Has_A_Team
+            raise Non_Existent_Id or Employee_Has_A_Team
     if INV_EM_ID(team_leader) and NE_ID(team_leader) and EM_HAS_TEAM(team_leader):
         pass
     else:
-        raise Non_Existent_Id, Employee_Has_A_Team
+        raise Non_Existent_Id or Employee_Has_A_Team
     for mechanic in mechanics:
         if INV_EM_ID(mechanic) and NE_ID(mechanic) and EM_HAS_TEAM(mechanic):
             pass
         else:
-            raise Non_Existent_Id, Employee_Has_A_Team
+            raise Non_Existent_Id or Employee_Has_A_Team
     team = Team(team_name,nationality,foundation_date,car_model,drivers,team_leader,mechanics)
     Team.add_team(team)
     print(f'{team.team_name} has been created successfully')
@@ -159,5 +162,6 @@ def create_team(team_name,nationality,foundation_date,car_model,drivers,team_lea
 
 if __name__ == '__main__':
     Ux = UserInterface()
-    create_employee(3, 'Juancho',33,'Uruguay', '10/08/2020',3400, 'Mechanic',90,300,100)
-    Employee.employee_lista
+    #id,name,age,nationality,born,salary,type,score,total_score,car_number
+    create_employee(49714935,'Juancho',25,'Uruguay','17/08/1998',3400,'Mechanic',90,80,18)
+    print(Employee.employee_lista)

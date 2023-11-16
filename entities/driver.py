@@ -26,3 +26,5 @@ class Driver(Employee):
     @injury.setter
     def injury(self,other):
         self._injury=other
+    def isemployee(self):
+        pass

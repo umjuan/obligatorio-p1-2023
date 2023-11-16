@@ -1,4 +1,4 @@
-from abc import ABC
+from abc import ABC, abstractmethod
 
 class Employee(ABC):
     def __init__(self,id,name,age,nationality,born,salary):
@@ -32,10 +32,13 @@ class Employee(ABC):
     def employee_add(cls, other):
         Employee.employee_list.append(other)
     
+    @abstractmethod
+    def isemployee(self):
+        pass
+    
     def employee_lista(cls):
         ids = []
         for id in Employee.employee_list:
             x = id
             ids.append(x)
-        for instance in ids:
-            print(isinstance(instance))
+        return ids
