@@ -82,7 +82,7 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
     '''
     remaining car_number validation
     '''
-    
+
     # if nationality != None and nationality == str:
     #     pass
     # else:
@@ -98,16 +98,21 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
     # if score != None and score == int and score >= 0 <=99:
     #     pass
     if type == 'Mechanic':
-        M = Mechanic(id,name,age,nationality,born,salary,score)
         INV_SC(score)
+        M = Mechanic(id,name,age,nationality,born,salary,score)
         M.employee_add(M)
+        print(f'Created {M._name}')
     if type == 'Driver':
+        INV_SC(score)
+        INV_SC(total_score)
         M = Driver(id,name,age,nationality,born,salary,score,total_score,car_number)
         M._score = score
         M.employee_add(M)
+        print(f'Created driver {M._name, M._car_number, M._score, M._total_score}<')
     if type == 'Director':
         M = Director(id, name, age, nationality, born, salary)
         M.employee_add(M)
+        print(f'Created {M._name}')
 
 if __name__ == '__main__':
     Ux = UserInterface()
