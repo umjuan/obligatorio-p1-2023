@@ -1,10 +1,10 @@
 from employee import Employee
 
 class Driver(Employee):
-    def __init__(self,id,name,age,nationality,born,salary,score,total_score,car_number,injury=False):
+    def __init__(self,id,name,age,nationality,born,salary,score,car_number,injury=False):
         Employee.__init__(self,id,name,age,nationality,born,salary)
         self._score=score
-        self._total_score=total_score
+        self._total_score=0
         self._car_number=car_number
         self._injury=injury
         self.type='driver'

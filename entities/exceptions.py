@@ -109,3 +109,7 @@ def REP_PAR (lista):               #revisa que no se use un parametro repetido
     for i in lista:                #e.g.: pilotos que abandonaron (no se puesde repetir)
         if lista.count(i)>1:
             raise Repeating_Parameters()
+        
+
+
+
