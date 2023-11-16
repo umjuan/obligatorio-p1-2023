@@ -3,6 +3,7 @@ from mechanic import Mechanic
 from driver import Driver
 from team_leader import Team_leader
 from team import Team
+from datetime import datetime
 
 class Invalid_Employee_id(Exception):
 
@@ -53,13 +54,39 @@ class Non_Existent_Id(Exception):
         self.message=message
         super().__init__(self.message)
 
-
 class Repeating_Parameters(Exception):
 
     def __init__(self, message='two or more parameters are the same'):
         self.message=message
         super().__init__(self.message)
 
+class Alphabet(Exception):
+
+    def __init__(self, message='check syntax issues, only alphabet characters available'):
+        self.message=message
+        super().__init__(self.message)
+
+class Age(Exception):
+
+        def __init__(self, message='Check age range of years [15-120] dates between [1888/01/01 - 2008/01/01/]'):
+            self.message=message
+            super().__init__(self.message)
+
+class Nacionality(Exception):
+    def __init__(self, message='Check nationality sintax, remember must use alphabet characters'):
+        self.message=message
+        super().__init__(self.message)
+
+class Dates(Exception):
+    def __init__(self, message='Check nationality sintax, remember must use alphabet characters'):
+        self.message=message
+        super().__init__(self.message)
+
+
+class Salary(Exception):
+    def __init__(self, message='Salary must be int and 0 > salary >= 9999999999999'):
+        self.message=message
+        super().__init__(self.message)    
 
 
 def NE_ID (ide):                                       #Chequea si la id de un empleado existe, devuelve eror                                                      
@@ -73,10 +100,11 @@ def INV_EM_ID(ide):                                #chequea si la id dada es val
             raise Invalid_Employee_id()
 
 def INV_SC(sco):                                #chequea si un score dado es correcto
-    if len(sco)>2:raise Invalid_score()
-    for i in list(sco):
-        if i not in ['0','1','2','3','4','5','6','7','8','9']:
-            raise Invalid_Employee_id()
+    if 0>len(sco)>2:
+        for i in list(sco):
+            if i not in ['0','1','2','3','4','5','6','7','8','9']:
+                raise Invalid_Employee_id()
+        pass
 
 def EM_HAS_TEAM (ide):          #chequea si un empleado ya tiene un equipo antes de añadirlo a uno 
     lista=[]
@@ -103,9 +131,17 @@ def NC_OE_CAR_NMBR (number):         #chequea si el numero de auto dado es de un
         lista.extend(i.drivers)
     lista1=[x.car_number for x in Employee.employee_list if x.id in lista ]
     if number not in lista1:
-         raise Non_Competing_Or_Existing_Car_Nmbr()
+        raise Non_Competing_Or_Existing_Car_Nmbr()
 
 def REP_PAR (lista):               #revisa que no se use un parametro repetido
     for i in lista:                #e.g.: pilotos que abandonaron (no se puesde repetir)
         if lista.count(i)>1:
             raise Repeating_Parameters()
+        
+def DATE_VALIDATION (date):
+    date_obj  = datetime.strptime(date, '%Y-%m-%d').date()
+    startDate = datetime.datetime(1888, 1, 1, 00, 00, 00).date()
+    endDate   = datetime.strptime(2008, 1, 1, 00, 00, 00).date()
+    # check if dateObj is between startDate and endDate
+    if startDate <= date_obj <= endDate:
+        return True

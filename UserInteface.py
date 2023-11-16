@@ -42,18 +42,47 @@ class UserInterface:
 
 
 def create_employee(id,name,age,nationality,born,salary,type,score,total_score,car_number):
-    if id is int and id not in Employee.employee_lista:
+    if INV_EM_ID(id) and NE_ID(id):
         pass
     else:
-        raise Invalid_Employee_Parameter
-    # if name != None and name not in Employee.employee_list.__getattribute__(name):
-    #     pass
+        raise Invalid_Employee_id(), Non_Existent_Id    #,Invalid_Employee_Parameter
+
+    for employee in Employee.employee_lista():
+        if employee !=name and name != None and name.isalpha():
+            pass
+        else: 
+            raise Alphabet, Team_Name_Already_in_Use
     # else:
     #     raise Invalid_Employee_Parameter
-    # if age != None and age == int:
-    #     pass
-    # else:
-    #     raise Invalid_Employee_Parameter
+    if int(age) != None and 120>age>14 :
+        pass
+    else:
+        raise Age
+    if nationality != None and nationality.isalpha():
+            pass
+    else:
+        raise nationality
+    if datetime.datetime(born) != None and DATE_VALIDATION(born):
+        pass
+    else:
+        raise Dates
+    if int(salary) != None and 0>salary>9999999999999:
+        pass
+    else:
+        raise Salary
+    if INV_SC(score):
+        pass
+    else:
+        raise Invalid_score
+    if INV_SC(total_score):
+        pass
+    else:
+        raise Invalid_score
+    
+    '''
+    remaining car_number validation
+    '''
+    
     # if nationality != None and nationality == str:
     #     pass
     # else:
@@ -70,14 +99,17 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
     #     pass
     if type == 'Mechanic':
         M = Mechanic(id,name,age,nationality,born,salary,score)
+        INV_SC(score)
         M.employee_add(M)
     if type == 'Driver':
         M = Driver(id,name,age,nationality,born,salary,score,total_score,car_number)
+        M._score = score
         M.employee_add(M)
     if type == 'Director':
         M = Director(id, name, age, nationality, born, salary)
         M.employee_add(M)
 
-Ux = UserInterface()
-# create_employee(3, 'Juancho',33,'Uruguay', '10/08/2020',3400, 'Mechanic',90,300,100)
-Employee.employee_lista
+if __name__ == '__main__':
+    Ux = UserInterface()
+    create_employee(3, 'Juancho',33,'Uruguay', '10/08/2020',3400, 'Mechanic',90,300,100)
+    Employee.employee_lista
