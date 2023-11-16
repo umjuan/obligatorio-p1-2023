@@ -3,6 +3,7 @@ class Car:
         self._model=model
         self._score=score
         self._colour=colour
+    cars = []
     
     @property
     def model(self):
@@ -13,5 +14,12 @@ class Car:
     @property
     def colour(self):
         return  self._colour
+    
+    def cars_list(cls):
+        cars = []
+        for id in Car.cars:
+            x = id
+            cars.append(x)
+        return cars
 
 

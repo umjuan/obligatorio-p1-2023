@@ -1,4 +1,5 @@
 from employee import Employee
+from car import Car
 from mechanic import Mechanic
 from driver import Driver
 from team_leader import Team_leader
@@ -48,6 +49,12 @@ class Non_Competing_Or_Existing_Car_Nmbr(Exception):
         self.message=message
         super().__init__(self.message)
 
+class Car_Model_In_Use(Exception):
+
+    def __init__(self, message='This car model is represented by another team, check values'):
+        self.message=message
+        super().__init__(self.message)
+
 class Non_Existent_Id(Exception):
 
     def __init__(self, message='self descriptive'):
@@ -82,11 +89,26 @@ class Dates(Exception):
         self.message=message
         super().__init__(self.message)
 
-
 class Salary(Exception):
     def __init__(self, message='Salary must be int and 0 > salary >= 9999999999999'):
         self.message=message
-        super().__init__(self.message)    
+        super().__init__(self.message)
+
+class Score(Exception):
+    def __init__(self, message='Score must be int and 0 > salary >= 99'):
+        self.message=message
+        super().__init__(self.message)
+
+class Colour(Exception):
+    def __init__(self, message='Colour not founded, colour must be str'):
+        self.message=message
+        super().__init__(self.message)
+
+class Nationality(Exception):
+    def __init__(self, message='Country not founded, country must be str'):
+        self.message=message
+        super().__init__(self.message)
+
 
 
 def NE_ID (ide):                                       #Chequea si la id de un empleado existe, devuelve eror                                                      
@@ -101,9 +123,9 @@ def INV_EM_ID(ide):                                #chequea si la id dada es val
 
 def INV_SC(sco):                                #chequea si un score dado es correcto
     if 0>len(sco)>2:
-        for i in list(sco):
+        for i in list(sco):  
             if i not in ['0','1','2','3','4','5','6','7','8','9']:
-                raise Invalid_Employee_id()
+                raise Score()
         pass
 
 def EM_HAS_TEAM (ide):          #chequea si un empleado ya tiene un equipo antes de añadirlo a uno 
@@ -125,7 +147,7 @@ def CAR_NMBR_AIU_(number):             #chequea que un piloto no repita su numer
             if number==i.car_number:
                 raise Car_Nmbr_Already_in_Use()
             
-def NC_OE_CAR_NMBR (number):         #chequea si el numero de auto dado es de un piloto que compite
+def NC_OE_CAR_NMBR(number):         #chequea si el numero de auto dado es de un piloto que compite
     lista=[]                                  #usado durante la carrera
     for i in Team.team_list:
         lista.extend(i.drivers)
@@ -145,3 +167,62 @@ def DATE_VALIDATION (date):
     # check if dateObj is between startDate and endDate
     if startDate <= date_obj <= endDate:
         return True
+    
+def CAR_MODEL_VALIDATION(model):
+    if model == str:
+        pass
+    lista=[]                                  #usado durante la carrera
+    for car in Car.cars_list:
+        lista.append(car)
+    return lista
+
+def COLOR_LIST(colour):
+    simplify = colour.lower()
+    colours =[i.lower() for i in ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pink", "Brown", "Gray",
+            "White",  "Black", "Turquoise", "Lavender", "Magenta", "Cyan", "Indigo", "Maroon",
+            "Gold", "Silver",  "Olive", "Teal", "Peach", "Coral", "Violet", "Charcoal", "Beige",
+            "Mint", "Ruby", "Slate",  "Salmon", "Aqua", "Tan", "Navy", "Khaki", "Crimson", "Lime",
+            "Rose", "Brick", "Amber",  "Mustard", "Periwinkle", "Sapphire", "Sienna", "Plum", "Aquamarine",
+            "Apricot", "Chartreuse",  "Cerulean", "Tangerine", "Rust", "Mulberry", "Ivory", "Emerald", "Steel", "Burgundy",
+            "Forest Green", "Cornflower Blue", "Sky Blue", "Melon", "Pumpkin", "Ochre", "Denim",  "Cobalt", "Mauve", "Moccasin",
+            "Papaya Whip", "Wheat", "Slate Gray", "Turmeric", "Honeydew",  "Orchid", "Electric Blue", "Fuchsia", "Lemon", "Misty Rose",
+            "Salmon Pink", "Thistle",  "Powder Blue", "Hot Pink", "Midnight Blue", "Chocolate", "Olive Drab", "Pine Green",  "Tomato", "Firebrick",
+            "Dodger Blue", "Linen", "Navajo White",  "Alice Blue", "Azure", "Bisque", "Blanched Almond", "Burlywood", "Cadet Blue", "Chocolate", 
+            "Cornsilk", "Dark Goldenrod", "Dark Khaki", "Dark Olive Green", "Dark Orange", "Dark Orchid",  "Dark Salmon", "Dark Sea Green", "Dark Slate Blue",
+            "Dark Slate Gray", "Dark Turquoise",  "Deep Pink", "Deep Sky Blue", "Dim Gray", "Dodger Blue", "Firebrick", "Floral White", "Forest Green",
+            "Gainsboro", "Ghost White", "Gold", "Goldenrod", "Green Yellow", "Honeydew", "Hot Pink", "Indian Red",  "Ivory", "Khaki", "Lavender Blush",
+            "Lemon Chiffon", "Light Blue", "Light Coral", "Light Cyan",  "Light Goldenrod", "Light Goldenrod Yellow", "Light Gray", "Light Green",
+            "Light Pink", "Light Salmon",  "Light Sea Green", "Light Sky Blue", "Light Slate Gray", "Light Steel Blue", "Light Yellow", "Linen",  "Magenta",
+            "Maroon", "Medium Aquamarine", "Medium Blue", "Medium Orchid", "Medium Purple", "Medium Sea Green",  "Medium Slate Blue", "Medium Spring Green", 
+            "Medium Turquoise", "Medium Violet Red", "Midnight Blue",  "Mint Cream", "Misty Rose", "Moccasin", "Navajo White", "Navy", "Old Lace", "Olive",
+            "Olive Drab",  "Orange", "Orange Red", "Orchid", "Pale Goldenrod", "Pale Green", "Pale Turquoise", "Pale Violet Red",  "Papaya Whip", "Peach Puff",
+            "Peru", "Pink", "Plum", "Powder Blue", "Purple", "Red", "Rosy Brown",  "Royal Blue", "Saddle Brown", "Salmon", "Sandy Brown", "Sea Green", "Seashell",
+            "Sienna", "Silver",  "Sky Blue", "Slate Blue", "Slate Gray", "Snow", "Spring Green", "Steel Blue", "Tan", "Teal", "Thistle",  "Tomato", "Turquoise", "Violet",
+            "Wheat", "White", "White Smoke", "Yellow", "Yellow Green"]]
+    if simplify in colours:
+        pass
+    
+def NATIONALITY_LIST(nationality):
+    simplify = nationality.lower()
+    nationalies = [i.lower() for i in["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia",
+            "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin",
+            "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
+            "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia",
+            "Comoros", "Congo (Congo-Brazzaville)", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia (Czech Republic)", "Denmark",
+            "Djibouti", "Dominica", "Dominican Republic", "East Timor (Timor-Leste)", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea",
+            "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana",
+            "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India",
+            "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya",
+            "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia",
+            "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands",
+            "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar",
+            "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman",
+            "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania",
+            "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
+            "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia",
+            "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
+            "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey",
+            "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay",
+            "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"]]
+    if simplify in nationalies:
+        pass

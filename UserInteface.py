@@ -1,9 +1,10 @@
 #tkinter library is used to construct the GUI.
 from entities.employee import Employee
-from entities.exceptions import *
+from entities.car import Car
 from entities.mechanic import Mechanic
 from entities.driver import Driver
 from entities.director import Director
+from entities.exceptions import *
 import tkinter as tk
 from tkinter import ttk, messagebox
 #datetime helps with datestamp
@@ -52,16 +53,14 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
             pass
         else: 
             raise Alphabet, Team_Name_Already_in_Use
-    # else:
-    #     raise Invalid_Employee_Parameter
     if int(age) != None and 120>age>14 :
         pass
     else:
         raise Age
-    if nationality != None and nationality.isalpha():
+    if nationality != None and nationality.isalpha() and NATIONALITY_LIST(nationality):
             pass
     else:
-        raise nationality
+        raise Nationality
     if datetime.datetime(born) != None and DATE_VALIDATION(born):
         pass
     else:
@@ -78,25 +77,10 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
         pass
     else:
         raise Invalid_score
-    
-    '''
-    remaining car_number validation
-    '''
-
-    # if nationality != None and nationality == str:
-    #     pass
-    # else:
-    #     raise Invalid_Employee_Parameter
-    # if born != None and born == datetime:
-    #     pass
-    # else:
-    #     raise Invalid_Employee_Parameter
-    # if salary != None and salary == int:
-    #     pass
-    # else:
-    #     raise Invalid_Employee_Parameter
-    # if score != None and score == int and score >= 0 <=99:
-    #     pass
+    if car_number == int and NC_OE_CAR_NMBR(car_number):
+        pass
+    else:
+        raise 'Car number incorrect', Car_Nmbr_Already_in_Use 
     if type == 'Mechanic':
         INV_SC(score)
         M = Mechanic(id,name,age,nationality,born,salary,score)
@@ -113,6 +97,21 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
         M = Director(id, name, age, nationality, born, salary)
         M.employee_add(M)
         print(f'Created {M._name}')
+
+def create_car(model,score,colour):
+    if model != None and CAR_MODEL_VALIDATION(model):
+        pass
+    else:
+        raise Car_Model_In_Use
+    if score == int and INV_SC(score):
+        pass
+    else:
+        raise Score
+    if colour == str and COLOR_LIST(colour):
+        pass
+    else:
+        raise Colour
+
 
 if __name__ == '__main__':
     Ux = UserInterface()
