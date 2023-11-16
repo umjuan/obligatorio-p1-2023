@@ -23,6 +23,11 @@ class Team:
     @property
     def mechanics(self):
         return self._mechanics
+    @property
+    def members(self):
+        membrs = []
+        membrs.append(self.team_leader, self.drivers, self.mechanics)
+        return membrs
     @classmethod
     def add_team(cls,other):
         Team.team_list.append(other)

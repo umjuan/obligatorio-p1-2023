@@ -1,9 +1,22 @@
+from entities.employee import Employee
 from entities.team import Team
 from entities.car import Car
+from entities.driver import Driver
+from entities.director import Director
+from entities.mechanic import Mechanic
 
 class Race(object):
+    employees = Employee
+    drivers = Driver
+    directors = Director
+    cars = Car
+    
 
     def __init__(self):
+        teams = Team
+        employees = Employee
+        drivers = Driver
+        directors = Director
         self._racers = []
         self._teams = []
         self._results = []
@@ -47,16 +60,34 @@ class Race(object):
         return self._results
     
     def simulate_race(self):
-        for number in self.param:        
-            if number not in self.param and not None:
+        self.regist_unexpected
+        teams = Team
+        employees = Employee
+        drivers = Driver
+        directors = Director
+        cars = Car.cars
+        if self.get_left_race in cars:
+            self.cars = self.cars - self.get_param
+        if self.get_pits_error in cars:
+            self.cars = self.cars - self.get_pits_error
+        if self.get_penalties in cars:
+            self.cars = self.cars - self.get_penalties
+        for faults in self.cars:
+            cars.append(faults)
+        
+        
+        # for mmbr in teams.members:
 
-#       query_mechanic_teams()
-#       query_cars_score()
-#       score_final = suma_score_mecanicos + score_auto + score_piloto –
-#                        5*cantidad_errores_en_pits - 8*cantidad_penalidad_infringir_norma 
-                pass
-            else:
-                self._results.append(0)
+        # EM_HAS_TEAM(ide):          #chequea si un empleado ya tiene un equipo antes de añadirlo a uno 
+
+        
+# #       query_mechanic_teams()
+# #       query_cars_score()
+# #       score_final = suma_score_mecanicos + score_auto + score_piloto –
+# #                        5*cantidad_errores_en_pits - 8*cantidad_penalidad_infringir_norma 
+#                 pass
+#             else:
+#                 self._results.append(0)
 
     def query_top10_chmp(self):
         #Perform query

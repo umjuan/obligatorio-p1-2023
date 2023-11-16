@@ -1,4 +1,5 @@
 #tkinter library is used to construct the GUI.
+import Race
 from entities.employee import Employee
 from entities.car import Car
 from entities.mechanic import Mechanic
@@ -162,6 +163,7 @@ def create_team(team_name,nationality,foundation_date,car_model,drivers,team_lea
 
 if __name__ == '__main__':
     Ux = UserInterface()
+    R = Race()
     #id,name,age,nationality,born,salary,type,score,total_score,car_number
     create_employee(49714935,'Juancho',25,'Uruguay','17/08/1998',3400,'Mechanic',90,80,18)
     print(Employee.employee_lista)
