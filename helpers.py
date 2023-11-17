@@ -33,12 +33,9 @@ def EM_HAS_TEAM(ide):          #chequea si un empleado ya tiene un equipo antes 
         if ide in lista: raise Employee_Has_A_Team()
         else: pass
 
-def TEAM_NAME_AIU(name):                  #chequea que no se este usando el mismo nombre para dos equipos
+def TEAM_NAME_AIU():                  #chequea que no se este usando el mismo nombre para dos equipos
     lista= [i.team_name for i in Team.team_list]
-    if name in lista:
-        raise Team_Name_Already_in_Use()
-    else:
-        pass
+    return lista
 
 def CAR_NMBR_AIU_(number):             #chequea que un piloto no repita su numero de auto
     for i in Employee.employee_list:     #usado cuando se crea un piloto
@@ -149,9 +146,9 @@ def YEAR(year):
         pass
 
 def DATE_VALIDATION_TEAM(date):
-    # date_obj  = datetime.strptime(date, '%d/%m/%Y').date()
-    startDate = datetime.strptime(1888, 1, 1, 00, 00, 00).date()
-    endDate   = datetime.strptime(2026, 1, 1, 00, 00, 00).date()
+    date_obj  = datetime.strptime(date, '%d/%m/%Y').date()
+    startDate = datetime.strptime('01/01/1888','%d/%m/%Y').date()
+    endDate   = datetime.strptime('01/01/2026','%d/%m/%Y').date()
     # check if dateObj is between startDate and endDate
-    if startDate <= date <= endDate:
-        pass
+    if startDate <= date_obj <= endDate:
+        return True

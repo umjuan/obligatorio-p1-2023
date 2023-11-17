@@ -123,15 +123,15 @@ def create_car(model,year,score,colour):
     print(f'{car._model} has been created successfully')
 
 def create_team(team_name,nationality,foundation_date,car_model,drivers,team_leader,mechanics):
-    if team_name == str and TEAM_NAME_AIU(team_name):
+    if team_name == str and team_name not in TEAM_NAME_AIU:
         pass
     else:
         raise Alphabet or Team_Name_Already_in_Use
-    if nationality != None and nationality.isalpha() and NATIONALITY_LIST(nationality):
+    if nationality != None and nationality in NATIONALITY_LIST():
             pass
     else:
         raise Nationality
-    if datetime.datetime(foundation_date) != None and DATE_VALIDATION_TEAM(foundation_date):
+    if DATE_VALIDATION_TEAM(foundation_date):
         pass
     else:
         Dates_Team
@@ -165,5 +165,14 @@ if __name__ == '__main__':
     # R = Race()
     #id,name,age,nationality,born,salary,type,score,total_score,car_number
     create_employee('49714935','Juancho','25',"Uruguay",'17/08/1998','3400','Mechanic','90','80','18')
+    create_employee('49714936','Daniel','23',"Uruguay",'19/01/1999','3400','Mechanic','90','80','18')
+    create_employee('49751535','Jorge','24',"Uruguay",'17/08/1998','3400','Mechanic','70','10','18')
+    create_employee('49600135','Romina','25',"Uruguay",'17/08/1998','3400','Mechanic','67','60','18')
+    create_employee('49302125','Lucia','27',"Uruguay",'17/08/1998','3400','Mechanic','78','80','18')
+    create_employee('41111111','Andres','29',"Uruguay",'17/08/1998','3400','Mechanic','76','80','18')
+    create_employee('43234935','Ramon','33',"Uruguay",'17/08/1998','3400','Mechanic','56','80','18')
+    create_employee('46789135','Nataniel','55',"Uruguay",'17/08/1998','3400','Mechanic','61','80','18')
+    create_employee('43589135','Marcusse','55',"Uruguay",'17/08/1968','3400','Mechanic','61','80','18')
+    create_employee('43589135','Ronald','57',"United States",'17/08/1968','3400','Director','61','80','18')
     create_employee('46788911','Pedro','25',"Argentina",'17/08/1998','4400','Driver','90','80','77')
-    print(Employee.employee_lista)
+    print(Employee.employee_list)
