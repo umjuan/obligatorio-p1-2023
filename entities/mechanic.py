@@ -8,6 +8,7 @@ class Mechanic(Employee):
     @property
     def score(self):
         return self._score
+
     def isemployee(self):
         pass
     

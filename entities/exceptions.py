@@ -1,10 +1,23 @@
-from employee import Employee
-from car import Car
+# import entities
+# import team
+# import employee
+# from employee import Employee
+# from team import Team
+import Employee
+import Car
+import Team 
+import gc
 # from mechanic import Mechanic
 # from driver import Driver
 # from team_leader import Team_leader
-from team import Team
+# from car import Car
+# from team import Team
+# from employee import Employee
+
 from datetime import datetime
+
+
+gc.enable()
 
 class Invalid_Employee_id(Exception):
 
@@ -125,14 +138,14 @@ class Car_No_Exist(Exception):
         super().__init__(self.message)
 
 def NE_ID(ide):                                       #Chequea si la id de un empleado existe, devuelve eror                                                      
-    lista=[i.id for i in Employee.employee_list]       #si negativo, usado cuando se añade un empl. a un equipo
+    lista = [i._id for i in Employee.employee_list]       #si negativo, usado cuando se añade un empl. a un equipo
     if ide not in lista: raise Non_Existent_Id()
     else: pass
 
 def INV_EM_ID(ide):                                #chequea si la id dada es valida en cuanto a su sintaxis
-    if len(ide)!=8: raise Invalid_Employee_id()
-    for i in list(ide):
-        if i not in ['0','1','2','3','4','5','6','7','8','9']:
+    if len(ide) !=8: raise Invalid_Employee_id()
+    for x in list(ide):
+        if x not in ['0','1','2','3','4','5','6','7','8','9']:
             raise Invalid_Employee_id()
 
 def INV_SC(sco):                                #chequea si un score dado es correcto

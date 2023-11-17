@@ -1,10 +1,10 @@
 #tkinter library is used to construct the GUI.
 import Race
-from entities.employee import Employee
+# from entities.employee import Employee
 from entities.car import Car
 from entities.mechanic import Mechanic
 from entities.driver import Driver
-from entities.director import Director
+from entities.director import Director  
 from entities.exceptions import *
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -15,32 +15,32 @@ class UserInterface:
 
     def __init__(self):
         pass
-        global window
+        # global window
 
-        window = tk.Tk() 
-        window.geometry('500x300')
-        window.title('FIA Formula 1')
+        # window = tk.Tk() 
+        # window.geometry('500x300')
+        # window.title('FIA Formula 1')
 
-        #Buttons
-        create_employee_button = ttk.Button(window, width=50, text="Alta Empleado", command= print("Debug"))
-        create_employee_button.pack()
+        # #Buttons
+        # create_employee_button = ttk.Button(window, width=50, text="Alta Empleado", command= print("Debug"))
+        # create_employee_button.pack()
 
-        create_car_button = ttk.Button(window, width=50, text="Alta auto")
-        create_car_button.pack()
+        # create_car_button = ttk.Button(window, width=50, text="Alta auto")
+        # create_car_button.pack()
 
-        create_team_button = ttk.Button(window, width=50,text="Alta de equipo")
-        create_team_button.pack()
+        # create_team_button = ttk.Button(window, width=50,text="Alta de equipo")
+        # create_team_button.pack()
 
-        simulate_race_button = ttk.Button(window, width=50,text="Simular carrera")
-        simulate_race_button.pack()
+        # simulate_race_button = ttk.Button(window, width=50,text="Simular carrera")
+        # simulate_race_button.pack()
 
-        queries_button = ttk.Button(window, width=50,text="Consultas")
-        queries_button.pack()
+        # queries_button = ttk.Button(window, width=50,text="Consultas")
+        # queries_button.pack()
 
-        exit_button = ttk.Button(window, width=50,text="Exit", command=window.destroy)
-        exit_button.pack()
+        # exit_button = ttk.Button(window, width=50,text="Exit", command=window.destroy)
+        # exit_button.pack()
 
-        window.mainloop()
+        # window.mainloop()
 
 
 def create_employee(id,name,age,nationality,born,salary,type,score,total_score,car_number):
@@ -164,6 +164,6 @@ def create_team(team_name,nationality,foundation_date,car_model,drivers,team_lea
 if __name__ == '__main__':
     Ux = UserInterface()
     # R = Race()
-    # #id,name,age,nationality,born,salary,type,score,total_score,car_number
-    # create_employee(49714935,'Juancho',25,'Uruguay','17/08/1998',3400,'Mechanic',90,80,18)
-    # print(Employee.employee_lista)
+    #id,name,age,nationality,born,salary,type,score,total_score,car_number
+    create_employee('49714935','Juancho','25','Uruguay','17/08/1998','3400','Mechanic','90','80','18')
+    print(Employee.employee_lista)
