@@ -29,36 +29,96 @@ class Race(object):
         self.param3 = list(input('Insert racer numbers being penalized for breaking racing rules. '))
 
     @property
-    def get_param(self):
-        return self.param
+    def param(self):
+        listparam=self.param.replace(' ','')
+        listparam=listparam.split(',')
+        for i in listparam:
+            if listparam.count(i)>1: listparam.remove(i)
+        return listparam
     
     @property
-    def get_param2(self):
-        return self.param2
+    def param2(self):
+        listparam=self.param2.replace(' ','')
+        listparam=listparam.split(',')
+        return listparam
     
     @property
-    def get_param3(self):
-        return self.param3
+    def param3(self):
+        listparam=self.param3.replace(' ','')
+        listparam=listparam.split(',')
+        return listparam
     
     def get_left_race(self):
-        return self.get_param
+        listcomp=[]
+        listpivot1=[]
+        listpivot=self.param
+        for y in Employee.employee_list:
+            for z in listpivot:
+                if y.type=='driver' and z==y.car_number:
+                    listpivot1.append(y.id)
+                
+        for i in Team.team_list:
+            count=0
+            listteam=[]
+            listteam.append(i.team_name)
+            for x in i.drivers:
+                if not x in listpivot1 and count<2:
+                    listteam.append(x)
+                    count+=1
+            listcomp.append(listteam)
+        return listcomp
+
+ 
+
     
     def get_pits_error(self):
-        return self.get_param2
+        listcomp=[]
+        listpivot1=[]
+        listpivot=self.param2
+        for y in Employee.employee_list:
+            for z in listpivot:
+                if y.type=='driver' and z==y.car_number:
+                    listpivot1.append(y.id)
+        
+        for i in Team.team_list:
+            listteam=[]
+            listteam.append(i.team_name)
+            for x in listpivot1:
+                if x in i.drivers:
+                    x.append(listteam)
+            listcomp.append(listteam)    
+        return listcomp
+
     
     def get_penalties(self):
-        return self.get_param3
+        listcomp=[]
+        listpivot1=[]
+        listpivot=self.param3
+        for y in Employee.employee_list:
+            for z in listpivot:
+                if y.type=='driver' and z==y.car_number:
+                    listpivot1.append(y.id)
+        
+        for i in Team.team_list:
+            listteam=[]
+            listteam.append(i.team_name)
+            for x in listpivot1:
+                if x in i.drivers:
+                    x.append(listteam)
+            listcomp.append(listteam)    
+        return listcomp
+
     
     @property
-    def get_racers(self):
+    def racers(self):
         return self._racers
     
     @property
-    def get_teams(self):
+    def teams(self):
         return self._teams
 
     @property
-    def get_results(self):
+    def  results(self):
         return self._results
     
     def simulate_race(self):
