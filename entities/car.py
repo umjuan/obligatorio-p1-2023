@@ -23,10 +23,6 @@ class Car:
         Car.cars.append(other)
     
     def cars_list(cls):
-        cars = []
-        for id in Car.cars:
-            x = id
-            cars.append(x)
-        return cars
+        return cls.cars
 
 
