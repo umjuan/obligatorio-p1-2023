@@ -88,18 +88,18 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
         M = Mechanic(id,name,age,nationality,born,salary,score)
         M.isemployee()
         M.employee_add(M)
-        print(f'Created {M._name}')
+        print(f'Created {M._name, M.score, M.type}')
     if type == 'Driver':
         M = Driver(id,name,age,nationality,born,salary,score,total_score,car_number)
         M.isemployee()
         M._score = score
         M.employee_add(M)
-        print(f'Created driver {M._name, M._car_number, M._score, M._total_score}')
+        print(f'Created {M._name, M.type, M._car_number, M._score, M._total_score}')
     if type == 'Director':
         M = Director(id, name, age, nationality, born, salary)
         M.isemployee()
         M.employee_add(M)
-        print(f'Created {M._name}')
+        print(f'Created {M._name, M.type}')
 
 def create_car(model,year,score,colour):
     if model not in CAR_MODEL_VALIDATION():
@@ -156,9 +156,6 @@ def create_team(team_name,nationality,foundation_date,car_model,drivers,team_lea
     team = Team(team_name,nationality,foundation_date,car_model,drivers,team_leader,mechanics)
     Team.add_team(team)
     print(f'{team.team_name} has been created successfully')
-
-        
-
 
 if __name__ == '__main__':
     Ux = UserInterface()
