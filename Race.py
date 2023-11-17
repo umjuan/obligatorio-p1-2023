@@ -4,6 +4,8 @@ from entities.car import Car
 from entities.driver import Driver
 from entities.director import Director
 from entities.mechanic import Mechanic
+from exceptions.exceptions import *
+from datetime import datetime
 
 class Race(object):
     employees = Employee
@@ -74,20 +76,6 @@ class Race(object):
             self.cars = self.cars - self.get_penalties
         for faults in self.cars:
             cars.append(faults)
-        
-        
-        # for mmbr in teams.members:
-
-        # EM_HAS_TEAM(ide):          #chequea si un empleado ya tiene un equipo antes de añadirlo a uno 
-
-        
-# #       query_mechanic_teams()
-# #       query_cars_score()
-# #       score_final = suma_score_mecanicos + score_auto + score_piloto –
-# #                        5*cantidad_errores_en_pits - 8*cantidad_penalidad_infringir_norma 
-#                 pass
-#             else:
-#                 self._results.append(0)
 
     def query_top10_chmp(self):
         #Perform query
@@ -108,10 +96,3 @@ class Race(object):
     def query_team_chmp_results(self):
         #Query
         pass
-
-# R = Race()
-# A = R.regist_unexpected()
-# z = R.get_param
-
-# print(z)
-# print(R.__init__)from entities.team import Team

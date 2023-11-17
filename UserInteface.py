@@ -1,20 +1,22 @@
 #tkinter library is used to construct the GUI.
 import Race
+from helpers import *
 # from entities.employee import Employee
-from entities.car import Car as Car
-from entities.mechanic import Mechanic as Mechanic
-from entities.driver import Driver as Driver
-from entities.director import Director as Director
-from entities.exceptions import *
+# from entities.car import Car as Car
+# from entities.mechanic import Mechanic as Mechanic
+# from entities.driver import Driver as Driver
+# from entities.director import Director as Director
+from exceptions.exceptions import *
 import tkinter as tk
 from tkinter import ttk, messagebox
 #datetime helps with datestamp
-import datetime
+from datetime import datetime
 
 class UserInterface:
 
     def __init__(self):
         pass
+        r = Race
         # global window
 
         # window = tk.Tk() 
@@ -44,53 +46,50 @@ class UserInterface:
 
 
 def create_employee(id,name,age,nationality,born,salary,type,score,total_score,car_number):
-    if INV_EM_ID(id) and NE_ID(id):
+    if len(id) == 8 and id not in Employee.employee_list:
         pass
     else:
         raise Invalid_Employee_id or Non_Existent_Id    #,Invalid_Employee_Parameter
 
-    for employee in Employee.employee_lista():
-        if employee !=name and name != None and name.isalpha():
+    for employee in Employee.employee_list:
+        if name.isalpha() and name not in employee.name:
             pass
         else: 
             raise Alphabet or Team_Name_Already_in_Use
-    if int(age) != None and 120>age>14 :
+    if int(age) != None and 120>int(age)>14 :
         pass
     else:
         raise Age
-    if nationality != None and nationality.isalpha() and NATIONALITY_LIST(nationality):
+    if nationality != None and nationality in NATIONALITY_LIST():
             pass
     else:
         raise Nationality
-    if datetime.datetime(born) != None and DATE_VALIDATION(born):
+    if DATE_VALIDATION(born):
         pass
     else:
         raise Dates
-    if int(salary) != None and 0>salary>9999999999999:
+    if int(salary) != None and int(salary)>0:
         pass
     else:
         raise Salary
-    if INV_SC(score):
+    if int(score) in INV_SC():
         pass
     else:
         raise Invalid_score
-    if INV_SC(total_score):
+    if int(total_score) in INV_SC():
         pass
     else:
         raise Invalid_score
-    if car_number == int and NC_OE_CAR_NMBR(car_number):
+    if int(car_number) not in NC_OE_CAR_NMBR():
         pass
     else:
         raise Car_Nmbr_Already_in_Use 
     if type == 'Mechanic':
-        INV_SC(score)
         M = Mechanic(id,name,age,nationality,born,salary,score)
         M.isemployee()
         M.employee_add(M)
         print(f'Created {M._name}')
     if type == 'Driver':
-        INV_SC(score)
-        INV_SC(total_score)
         M = Driver(id,name,age,nationality,born,salary,score,total_score,car_number)
         M.isemployee()
         M._score = score
@@ -165,5 +164,6 @@ if __name__ == '__main__':
     Ux = UserInterface()
     # R = Race()
     #id,name,age,nationality,born,salary,type,score,total_score,car_number
-    create_employee('49714935','Juancho','25','Uruguay','17/08/1998','3400','Mechanic','90','80','18')
+    create_employee('49714935','Juancho','25',"Uruguay",'17/08/1998','3400','Mechanic','90','80','18')
+    create_employee('46788911','Pedro','25',"Argentina",'17/08/1998','4400','Driver','90','80','77')
     print(Employee.employee_lista)
