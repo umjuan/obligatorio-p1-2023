@@ -1,10 +1,10 @@
 #tkinter library is used to construct the GUI.
 import Race
 # from entities.employee import Employee
-from entities.car import Car
-from entities.mechanic import Mechanic
-from entities.driver import Driver
-from entities.director import Director  
+from entities.car import Car as Car
+from entities.mechanic import Mechanic as Mechanic
+from entities.driver import Driver as Driver
+from entities.director import Director as Director
 from entities.exceptions import *
 import tkinter as tk
 from tkinter import ttk, messagebox
