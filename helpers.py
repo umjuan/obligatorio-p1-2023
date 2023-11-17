@@ -9,7 +9,11 @@ from datetime import datetime
 
 def NE_ID():                                       #Chequea si la id de un empleado existe, devuelve eror                                                      
     lista = Employee.employee_list       #si negativo, usado cuando se añade un empl. a un equipo
-    return lista
+    eid = []
+    for i in lista:
+        ids = i.id
+        eid.append(ids)
+    return eid
 
 def INV_EM_ID(ide):                                #chequea si la id dada es valida en cuanto a su sintaxis
     if len(ide) ==8:
@@ -24,18 +28,21 @@ def INV_SC():                                #chequea si un score dado es correc
         scores = [x for x in range(0,100)]
         return scores
 
-def EM_HAS_TEAM(ide):          #chequea si un empleado ya tiene un equipo antes de añadirlo a uno 
+def EM_HAS_TEAM():          #chequea si un empleado ya tiene un equipo antes de añadirlo a uno 
     lista=[]
     for i in Team.team_list:
         lista.extend(i.drivers)
         lista.extend(i.mechanics)
         lista.extend(i.team_leader)
-        if ide in lista: raise Employee_Has_A_Team()
-        else: pass
+    return lista
 
 def TEAM_NAME_AIU():                  #chequea que no se este usando el mismo nombre para dos equipos
-    lista= [i.team_name for i in Team.team_list]
-    return lista
+    names = []
+    for team in Team.team_list:
+        for t in team:
+            x = t._team_name
+            names.extend(x)
+    return names
 
 def CAR_NMBR_AIU_(number):             #chequea que un piloto no repita su numero de auto
     for i in Employee.employee_list:     #usado cuando se crea un piloto
@@ -68,15 +75,17 @@ def DATE_VALIDATION(date):
     if startDate <= date_obj <= endDate:
         return True
     
-def CAR_MODEL_VALIDATION(model):
-    if model == str:
-        lista=[]                                  #usado durante la carrera
-        for car in Car.cars_list:
-            lista.append(car)
-        return lista
+def CAR_MODEL_VALIDATION():
+    lista=[]                                  #usado durante la carrera
+    for car in Car.cars:
+        lista.append(car)
+    names = []
+    for cars in lista:
+        x = cars._model
+        names.append(x)
+    return names
 
-def COLOR_LIST(colour):
-    simplify = colour.lower()
+def COLOR_LIST():
     colours =["red", "blue", "green", "yellow", "orange", "purple", "pink", "brown",
             "gray", "white", "black", "turquoise", "lavender", "magenta", "cyan", "indigo",
             "maroon", "gold", "silver", "olive", "teal", "peach", "coral", "violet",
@@ -100,8 +109,7 @@ def COLOR_LIST(colour):
             "peru", "pink", "plum", "powder blue", "purple", "red", "rosy brown", "royal blue", "saddle brown", "salmon", "sandy brown", "sea green", "seashell",
             "sienna", "silver", "sky blue", "slate blue", "slate gray", "snow", "spring green", "steel blue", "tan", "teal", "thistle", "tomato", "turquoise", "violet",
             "wheat", "white", "white smoke", "yellow", "yellow green"]
-    if simplify in colours:
-        pass
+    return colours
     
 def NATIONALITY_LIST():
     nationalies = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia",
@@ -126,8 +134,7 @@ def NATIONALITY_LIST():
             "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"]
     return nationalies
 
-def YEAR(year):
-    simplify = int(year)
+def YEAR():
     years =[1888, 1889, 1890, 1891, 1892, 1893, 1894, 1895, 1896, 1897,
             1898, 1899, 1900, 1901, 1902, 1903, 1904, 1905, 1906, 1907,
             1908, 1909, 1910, 1911, 1912, 1913, 1914, 1915, 1916, 1917,
@@ -142,8 +149,7 @@ def YEAR(year):
             1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,
             2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017,
             2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027]
-    if simplify in years:
-        pass
+    return years
 
 def DATE_VALIDATION_TEAM(date):
     date_obj  = datetime.strptime(date, '%d/%m/%Y').date()

@@ -102,19 +102,19 @@ def create_employee(id,name,age,nationality,born,salary,type,score,total_score,c
         print(f'Created {M._name}')
 
 def create_car(model,year,score,colour):
-    if model == str and model not in CAR_MODEL_VALIDATION(model):
+    if model not in CAR_MODEL_VALIDATION():
         pass
     else:
         raise Car_Model_In_Use
-    if year != None and YEAR(year):
+    if  int(year) in YEAR():
         pass
     else:
         raise Year
-    if score == int and INV_SC(score):
+    if int(score) in INV_SC():
         pass
     else:
         raise Score
-    if colour == str and COLOR_LIST(colour):
+    if colour.lower() in COLOR_LIST():
         pass
     else:
         raise Colour
@@ -123,7 +123,7 @@ def create_car(model,year,score,colour):
     print(f'{car._model} has been created successfully')
 
 def create_team(team_name,nationality,foundation_date,car_model,drivers,team_leader,mechanics):
-    if team_name == str and team_name not in TEAM_NAME_AIU:
+    if team_name not in TEAM_NAME_AIU():
         pass
     else:
         raise Alphabet or Team_Name_Already_in_Use
@@ -135,21 +135,21 @@ def create_team(team_name,nationality,foundation_date,car_model,drivers,team_lea
         pass
     else:
         Dates_Team
-    if car_model != None and car_model== str and car_model in Car.cars:
+    if car_model in CAR_MODEL_VALIDATION():
         pass
     else:
         raise Car_No_Exist
     for driver in drivers:
-        if driver == int and NE_ID(driver) and EM_HAS_TEAM(driver):
+        if str(driver) in NE_ID() and str(driver) not in EM_HAS_TEAM():
             pass
         else:
             raise Non_Existent_Id or Employee_Has_A_Team
-    if INV_EM_ID(team_leader) and NE_ID(team_leader) and EM_HAS_TEAM(team_leader):
+    if team_leader in NE_ID() and team_leader not in EM_HAS_TEAM():
         pass
     else:
         raise Non_Existent_Id or Employee_Has_A_Team
     for mechanic in mechanics:
-        if INV_EM_ID(mechanic) and NE_ID(mechanic) and EM_HAS_TEAM(mechanic):
+        if mechanic in NE_ID() and mechanic not in EM_HAS_TEAM():
             pass
         else:
             raise Non_Existent_Id or Employee_Has_A_Team
@@ -175,4 +175,10 @@ if __name__ == '__main__':
     create_employee('43589135','Marcusse','55',"Uruguay",'17/08/1968','3400','Mechanic','61','80','18')
     create_employee('43589135','Ronald','57',"United States",'17/08/1968','3400','Director','61','80','18')
     create_employee('46788911','Pedro','25',"Argentina",'17/08/1998','4400','Driver','90','80','77')
+    create_employee('41308911','Joaquin','25',"Argentina",'01/01/1998','4400','Driver','90','80','11')
+    create_employee('44988911','Rodrigo','25',"Argentina",'05/08/1995','4900','Driver','90','80','55')
+    create_car('Alfa','2004','30','red')
+    create_car('Lambo','2004','30','red')
+    create_team('Scuderia', 'Uruguay', '14/12/2005','Lambo',['46788911','41308911','44988911'],'43589135',['43589135','46789135','43234935','41111111','49302125','49600135','49751535','49714936','49714935'])
+
     print(Employee.employee_list)
