@@ -10,13 +10,6 @@ class Invalid_score(Exception):
         self.message=message
         super().__init__(self.message)
 
-'''class Invalid_Car_Parameter(Exception):
-
-    def __init__(self, message='one or many of the car\'s parameters given were incorrect'):
-        self.message=message
-        super().__init__(self.message)
-        '''
-
 class Employee_Has_A_Team(Exception):
 
     def __init__(self, message='Employee already has a team'):

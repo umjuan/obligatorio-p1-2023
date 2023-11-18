@@ -39,9 +39,7 @@ def EM_HAS_TEAM():          #chequea si un empleado ya tiene un equipo antes de 
 def TEAM_NAME_AIU():                  #chequea que no se este usando el mismo nombre para dos equipos
     names = []
     for team in Team.team_list:
-        for t in team:
-            x = t._team_name
-            names.extend(x)
+        names.extend(team._team_name)
     return names
 
 def CAR_NMBR_AIU_(number):             #chequea que un piloto no repita su numero de auto

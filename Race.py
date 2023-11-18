@@ -6,9 +6,24 @@ from entities.director import Director
 from entities.mechanic import Mechanic
 from exceptions.exceptions import *
 from datetime import datetime
+from helpers import *
 
 class Race(object):
+    employees = Employee
+    drivers = Driver
+    directors = Director
+    cars = Car
     
+
+    def __init__(self):
+        teams = Team
+        employees = Employee
+        drivers = Driver
+        directors = Director
+        self._racers = []
+        self._teams = []
+        self._results = []
+
     def regist_unexpected(self):
         self.param = list(input('Insert comma separated racers number which left the race. '))
         self.param2 = list(input('Insert racer numbers who reported errors in pits. '))
@@ -54,7 +69,6 @@ class Race(object):
             listcomp.append(listteam)
         return listcomp
 
- 
 
     
     def get_pits_error(self):
@@ -71,12 +85,12 @@ class Race(object):
             listteam.append(i.team_name)
             for x in listpivot1:
                 if x in i.drivers:
-                    listteam.append(x)
+                    x.append(listteam)
             listcomp.append(listteam)    
         return listcomp
 
     
-    def get_penalties(self): 
+    def get_penalties(self):
         listcomp=[]
         listpivot1=[]
         listpivot=self.param3
@@ -90,7 +104,7 @@ class Race(object):
             listteam.append(i.team_name)
             for x in listpivot1:
                 if x in i.drivers:
-                    listteam.append(x)
+                    x.append(listteam)
             listcomp.append(listteam)    
         return listcomp
 
@@ -109,51 +123,61 @@ class Race(object):
     
     def simulate_race(self):
         self.regist_unexpected()
-        part=self.get_left_race()
-        listrace=[]
-        for i in part:
-            listdriver=[]
-            if len(i)!=1:
-                for x in i[1:]:
-                    lista=[]
-                    suma1=0
-                    for z in Team.team_list:
-                        if x in z.drivers:
-                            num=[n for n in z.mechanics]
-                            num1=int(z.car_model.score)
-                            num3=z.team_leader
-                            break
-                    for y in Employee.employee_list:
-                        if x==y.id:
-                            num2=int(y.score)
-                        if num3==y.id:
-                            num4=int(y.score)
-                        for w in num:
-                            if w==y.id:
-                                suma1+=int(y.score)
-                                break
-                    sumafinal=num1+num2+num4+suma1
-                    lista.append(x)
-                    lista.append(i[0])
-                    lista.append(sumafinal)
-                    listdriver.append(lista)       
-            listrace.append(listdriver)
-        part1=self.get_pits_error()
-        for i in part1:
-            for x in range(len(listrace)):
-                num8=part1.count(listrace[x][0])
-                listrace[x][2]-=num8*5
-        part2=self.get_penalties()
-        for i in part1:
-            for x in range(len(listrace)):
-                num8=part1.count(listrace[x][0])
-                listrace[x][2]-=num8*8
-        for i in listrace:
-            print(i)
-                
-                
+        cars = []
+        mechanics = []
+        drivers = []
+        # for employee in Employee.employee_list:
+        #     if employee.type == 'mechanic':
+        #         employee.m_score = []
+        #         x = employee.score
+        #         employee.m_score.append(x)
+        #         mechanics.append(employee.m_score) 
+        #     if employee.type == 'driver' and employee.injury == False:
+        #         cars.append(employee._car_number)
+        for team in Team.team_list:
+            
+            racing_team = {team._name, team._car_model, team._drivers, team._mechanics, team._team_leader}
+            self._teams.append(racing_team)
+            driver_score = []
+            mechanic_score = []
+            
 
+            for driver in team._drivers:
+                if driver in NE_ID():
+                    for employee in Driver.employee_list:
+                        if employee.id == driver:
+                            driver_score.append(employee._total_score)
+            driver_score = sum(driver_score)
+            drivers.append(driver_score)
 
+            for mechanic in team._mechanics:
+                if mechanic in NE_ID():
+                    for employee in Mechanic.employee_list:
+                        if employee.id == mechanic:
+                            mechanic_score.append(employee._score)
+            mechanic_score = sum(mechanic_score)
+            mechanics.append(mechanic_score)
+            
+        if self.get_left_race in cars:
+            cars.remove(self.get_left_race)
+        else:
+            raise Car_No_Exist
+        if self.get_pits_error in cars:
+            self.pit_error = 1
+        else:
+            raise Car_No_Exist
+        if self.get_penalties in cars:
+            self.penalities = 1  
+        else:
+            raise Car_No_Exist
+        grid_mechanics = []
+        for grid_score in mechanics:
+            grid_mechanics.append(grid_score)
+    
+        grid_results = [team for team in grid_mechanics,score_auto + score_piloto –
+5*cantidad_errores_en_pits - 8*cantidad_penalidad_infringir_norma
+
+        for car in cars:
 
 
     def query_top10_chmp(self):

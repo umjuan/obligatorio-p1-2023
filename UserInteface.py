@@ -16,7 +16,7 @@ class UserInterface:
 
     def __init__(self):
         pass
-        r = Race
+        # r = Race
         # global window
 
         # window = tk.Tk() 
@@ -177,5 +177,6 @@ if __name__ == '__main__':
     create_car('Alfa','2004','30','red')
     create_car('Lambo','2004','30','red')
     create_team('Scuderia', 'Uruguay', '14/12/2005','Lambo',['46788911','41308911','44988911'],'43589135',['43589135','46789135','43234935','41111111','49302125','49600135','49751535','49714936','49714935'])
-
+    
     print(Employee.employee_list)
+    print(Team.team_list)
