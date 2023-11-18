@@ -1,5 +1,5 @@
 #tkinter library is used to construct the GUI.
-import Race
+from Race import Race
 from helpers import *
 # from entities.employee import Employee
 # from entities.car import Car as Car
@@ -155,6 +155,10 @@ def create_team(team_name,nationality,foundation_date,car_model,drivers,team_lea
             raise Non_Existent_Id or Employee_Has_A_Team
     team = Team(team_name,nationality,foundation_date,car_model,drivers,team_leader,mechanics)
     Team.add_team(team)
+    for driver in drivers:
+        if driver in Employee.employee_list:
+            driver._car_model = car_model
+
     print(f'{team.team_name} has been created successfully')
 
 if __name__ == '__main__':
@@ -177,6 +181,8 @@ if __name__ == '__main__':
     create_car('Alfa','2004','30','red')
     create_car('Lambo','2004','30','red')
     create_team('Scuderia', 'Uruguay', '14/12/2005','Lambo',['46788911','41308911','44988911'],'43589135',['43589135','46789135','43234935','41111111','49302125','49600135','49751535','49714936','49714935'])
-    
     print(Employee.employee_list)
     print(Team.team_list)
+    
+    # r = Race()
+    # r.simulate_race()

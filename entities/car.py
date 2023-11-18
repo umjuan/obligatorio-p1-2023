@@ -4,6 +4,9 @@ class Car:
         self._year =year
         self._score=score
         self._colour=colour
+        self._pit_error=''
+        self._penality=''
+
     cars = []
     
     @property

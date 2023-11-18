@@ -7,6 +7,7 @@ class Driver(Employee):
         self._total_score=total_score
         self._car_number=car_number
         self._injury=injury
+        self._car_model=''
         self.type='driver'
     @property
     def score(self):

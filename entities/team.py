@@ -7,6 +7,7 @@ class Team:
         self._drivers=drivers
         self._team_leader=team_leader
         self._mechanics=mechanics
+        self._score =''
     team_list=[]
     @property
     def team_name(self):
